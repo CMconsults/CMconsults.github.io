@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Generate Prayer Prompt</title>
+	<!-- Include Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<!-- Include custom CSS -->
+	<link rel="stylesheet" href="style.css">
+
+  <style>
+		body {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 100vh;
+			margin: 0;
+		}
+		
+	</style>
+</head>
+<body>
+	<div class="d-flex align-items-center vh-100">
+    
+  <div class="container text-center">
+        <div id="timer" class="h1 text-primary">01:00</div>
+        <h1>Generate Prayer Point</h1>
+        <div id="prompt-container" class="bg-primary text-white p-4 mb-4">
+          
+            <p id="prompt" class="display-1 mb-4"></p>
+         
+        </div>
+        <button id="generateBtn" class="btn btn-primary btn-lg" onclick="generatePrompt()">Generate</button>
+      </div>
+    
+  </div>
+      
+      <div id="myModal" class="modal text-center">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-body">
+              <p class="h5">Thank you for giving your 1 Minute! Would love to get another prayer point?</p>
+              <button class="btn btn-primary" onclick="goToIndexPage()">Yes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      
+      
+
+	<!-- Include Bootstrap JS -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<!-- Include custom JS -->
+	<script src="script.js"></script>
+
+	<script>
+		// Set data-toggle and data-target attributes for the modal trigger button
+		document.getElementById("generateBtn").setAttribute("data-toggle", "modal");
+		document.getElementById("generateBtn").setAttribute("data-target", "#myModal");
+	</script>
+</body>
+</html>
+
+
