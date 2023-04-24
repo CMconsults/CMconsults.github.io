@@ -1,0 +1,1143 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
+        <script src="data/Crop_ProductionES_1.js"></script>
+        <script src="data/Habitat_QualityES_2.js"></script>
+        <script src="data/PollinationES_3.js"></script>
+        <script src="data/RecreationES_4.js"></script>
+        <script src="data/Ondo_State_Tourism_Sites_5.js"></script>
+        <script src="data/CarbonStorage_6.js"></script>
+        <script src="data/Aesthetic_QualityES_7.js"></script>
+        <script src="data/Water_ProvisionES_8.js"></script>
+        <script src="data/Poverty_MDI_9.js"></script>
+        <script src="data/OndoStateNigeria_10.js"></script>
+        <script>
+        var highlightLayer;
+        function highlightFeature(e) {
+            highlightLayer = e.target;
+
+            if (e.target.feature.geometry.type === 'LineString') {
+              highlightLayer.setStyle({
+                color: '#ffff00',
+              });
+            } else {
+              highlightLayer.setStyle({
+                fillColor: '#ffff00',
+                fillOpacity: 1
+              });
+            }
+        }
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        })
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+            if (bounds_group.getLayers().length) {
+                map.fitBounds(bounds_group.getBounds());
+            }
+        }
+        map.createPane('pane_OpenStreetMap_0');
+        map.getPane('pane_OpenStreetMap_0').style.zIndex = 400;
+        var layer_OpenStreetMap_0 = L.tileLayer('http://tile.osm.org/{z}/{x}/{y}.png', {
+            pane: 'pane_OpenStreetMap_0',
+            opacity: 1.0,
+            attribution: '',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 19
+        });
+        layer_OpenStreetMap_0;
+        map.addLayer(layer_OpenStreetMap_0);
+        function pop_Crop_ProductionES_1(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+    <tr>\
+        <td colspan="2"><strong>LGA</strong><br />' + (feature.properties['LGA'] !== null ? autolinker.link(feature.properties['LGA'].toLocaleString()) : '') + '</td>\
+    </tr>\
+    <tr>\
+        <td colspan="2"><strong>Crop Production ES</strong><br />' + (feature.properties['Crop_Pro_1'] !== null ? autolinker.link(feature.properties['Crop_Pro_1'].toLocaleString()) : '') + '</td>\
+    </tr>\
+</table>';
+
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Crop_ProductionES_1_0(feature) {
+            if (feature.properties['Crop_Produ'] >= 125.300000 && feature.properties['Crop_Produ'] <= 152.020000 ) {
+                return {
+                pane: 'pane_Crop_ProductionES_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,68,27,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Crop_Produ'] >= 96.862000 && feature.properties['Crop_Produ'] <= 125.300000 ) {
+                return {
+                pane: 'pane_Crop_ProductionES_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(42,146,75,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Crop_Produ'] >= 56.882000 && feature.properties['Crop_Produ'] <= 96.862000 ) {
+                return {
+                pane: 'pane_Crop_ProductionES_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(123,199,124,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Crop_Produ'] >= 38.392000 && feature.properties['Crop_Produ'] <= 56.882000 ) {
+                return {
+                pane: 'pane_Crop_ProductionES_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(201,234,194,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Crop_Produ'] >= 14.700000 && feature.properties['Crop_Produ'] <= 38.392000 ) {
+                return {
+                pane: 'pane_Crop_ProductionES_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(247,252,245,1.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_Crop_ProductionES_1');
+        map.getPane('pane_Crop_ProductionES_1').style.zIndex = 401;
+        map.getPane('pane_Crop_ProductionES_1').style['mix-blend-mode'] = 'normal';
+        var layer_Crop_ProductionES_1 = new L.geoJson(json_Crop_ProductionES_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Crop_ProductionES_1',
+            layerName: 'layer_Crop_ProductionES_1',
+            pane: 'pane_Crop_ProductionES_1',
+            onEachFeature: pop_Crop_ProductionES_1,
+            style: style_Crop_ProductionES_1_0,
+        });
+        bounds_group.addLayer(layer_Crop_ProductionES_1);
+        function pop_Habitat_QualityES_2(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+    <tr>\
+        <td colspan="2"><strong>LGA</strong><br />' + (feature.properties['LGA'] !== null ? autolinker.link(feature.properties['LGA'].toLocaleString()) : '') + '</td>\
+    </tr>\
+    <tr>\
+        <td colspan="2"><strong>Habitat Quality ES</strong><br />' + (feature.properties['Habitat__1'] !== null ? autolinker.link(feature.properties['Habitat__1'].toLocaleString()) : '') + '</td>\
+    </tr>\
+</table>';
+
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Habitat_QualityES_2_0(feature) {
+            if (feature.properties['Habitat_Qu'] >= 0.946000 && feature.properties['Habitat_Qu'] <= 0.970000 ) {
+                return {
+                pane: 'pane_Habitat_QualityES_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,68,27,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Habitat_Qu'] >= 0.930000 && feature.properties['Habitat_Qu'] <= 0.946000 ) {
+                return {
+                pane: 'pane_Habitat_QualityES_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(42,146,75,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Habitat_Qu'] >= 0.898000 && feature.properties['Habitat_Qu'] <= 0.930000 ) {
+                return {
+                pane: 'pane_Habitat_QualityES_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(123,199,124,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Habitat_Qu'] >= 0.874000 && feature.properties['Habitat_Qu'] <= 0.898000 ) {
+                return {
+                pane: 'pane_Habitat_QualityES_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(201,234,194,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Habitat_Qu'] >= 0.620000 && feature.properties['Habitat_Qu'] <= 0.874000 ) {
+                return {
+                pane: 'pane_Habitat_QualityES_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(247,252,245,1.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_Habitat_QualityES_2');
+        map.getPane('pane_Habitat_QualityES_2').style.zIndex = 402;
+        map.getPane('pane_Habitat_QualityES_2').style['mix-blend-mode'] = 'normal';
+        var layer_Habitat_QualityES_2 = new L.geoJson(json_Habitat_QualityES_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Habitat_QualityES_2',
+            layerName: 'layer_Habitat_QualityES_2',
+            pane: 'pane_Habitat_QualityES_2',
+            onEachFeature: pop_Habitat_QualityES_2,
+            style: style_Habitat_QualityES_2_0,
+        });
+        bounds_group.addLayer(layer_Habitat_QualityES_2);
+        function pop_PollinationES_3(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+    <tr>\
+        <td colspan="2"><strong>LGA</strong><br />' + (feature.properties['LGA'] !== null ? autolinker.link(feature.properties['LGA'].toLocaleString()) : '') + '</td>\
+    </tr>\
+    <tr>\
+        <td colspan="2"><strong>Pollination ES</strong><br />' + (feature.properties['Pollinat_1'] !== null ? autolinker.link(feature.properties['Pollinat_1'].toLocaleString()) : '') + '</td>\
+    </tr>\
+</table>';
+
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_PollinationES_3_0(feature) {
+            if (feature.properties['Pollinatio'] >= 0.270000 && feature.properties['Pollinatio'] <= 0.280000 ) {
+                return {
+                pane: 'pane_PollinationES_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,68,27,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Pollinatio'] >= 0.252000 && feature.properties['Pollinatio'] <= 0.270000 ) {
+                return {
+                pane: 'pane_PollinationES_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(42,146,75,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Pollinatio'] >= 0.218000 && feature.properties['Pollinatio'] <= 0.252000 ) {
+                return {
+                pane: 'pane_PollinationES_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(123,199,124,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Pollinatio'] >= 0.204000 && feature.properties['Pollinatio'] <= 0.218000 ) {
+                return {
+                pane: 'pane_PollinationES_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(201,234,194,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Pollinatio'] >= 0.170000 && feature.properties['Pollinatio'] <= 0.204000 ) {
+                return {
+                pane: 'pane_PollinationES_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(247,252,245,1.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_PollinationES_3');
+        map.getPane('pane_PollinationES_3').style.zIndex = 403;
+        map.getPane('pane_PollinationES_3').style['mix-blend-mode'] = 'normal';
+        var layer_PollinationES_3 = new L.geoJson(json_PollinationES_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_PollinationES_3',
+            layerName: 'layer_PollinationES_3',
+            pane: 'pane_PollinationES_3',
+            onEachFeature: pop_PollinationES_3,
+            style: style_PollinationES_3_0,
+        });
+        bounds_group.addLayer(layer_PollinationES_3);
+        function pop_RecreationES_4(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>LGA</strong><br />' + (feature.properties['LGA'] !== null ? autolinker.link(feature.properties['LGA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Shape_Leng'] !== null ? autolinker.link(feature.properties['Shape_Leng'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Shape_Area'] !== null ? autolinker.link(feature.properties['Shape_Area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Poverty_MD'] !== null ? autolinker.link(feature.properties['Poverty_MD'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FID_'] !== null ? autolinker.link(feature.properties['FID_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Water_Val'] !== null ? autolinker.link(feature.properties['Water_Val'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Aesthetics'] !== null ? autolinker.link(feature.properties['Aesthetics'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Pollinatio'] !== null ? autolinker.link(feature.properties['Pollinatio'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Habitat_Qu'] !== null ? autolinker.link(feature.properties['Habitat_Qu'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Crop_Produ'] !== null ? autolinker.link(feature.properties['Crop_Produ'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Carbon_Val'] !== null ? autolinker.link(feature.properties['Carbon_Val'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Recreation'] !== null ? autolinker.link(feature.properties['Recreation'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WaterES'] !== null ? autolinker.link(feature.properties['WaterES'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Aesthetic_'] !== null ? autolinker.link(feature.properties['Aesthetic_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Pollinatio_1'] !== null ? autolinker.link(feature.properties['Pollinatio_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Habitat_Qu_1'] !== null ? autolinker.link(feature.properties['Habitat_Qu_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Crop_Produ_1'] !== null ? autolinker.link(feature.properties['Crop_Produ_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Carbon_Sto'] !== null ? autolinker.link(feature.properties['Carbon_Sto'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_RecreationES_4_0(feature) {
+            switch(String(feature.properties['Recreation'])) {
+                case '1':
+                    return {
+                pane: 'pane_RecreationES_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,100,0,1.0)',
+                interactive: false,
+            }
+                    break;
+                case '0':
+                    return {
+                pane: 'pane_RecreationES_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,255,1.0)',
+                interactive: false,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_RecreationES_4');
+        map.getPane('pane_RecreationES_4').style.zIndex = 404;
+        map.getPane('pane_RecreationES_4').style['mix-blend-mode'] = 'normal';
+        var layer_RecreationES_4 = new L.geoJson(json_RecreationES_4, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_RecreationES_4',
+            layerName: 'layer_RecreationES_4',
+            pane: 'pane_RecreationES_4',
+            onEachFeature: pop_RecreationES_4,
+            style: style_RecreationES_4_0,
+        });
+        bounds_group.addLayer(layer_RecreationES_4);
+        function pop_Ondo_State_Tourism_Sites_5(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+    <tr>\
+        <td colspan="2"><strong>Name</strong><br />' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+    </tr>\
+    <tr>\
+        <td colspan="2"><strong>About</strong><br />' + (feature.properties['About'] !== null ? autolinker.link(feature.properties['About'].toLocaleString()) : '') + '</td>\
+    </tr>\
+    <tr>\
+        <td colspan="2">' + (feature.properties['Image'] !== null ? '<img src="images/' + String(feature.properties['Image']).replace(/[\\\/:]/g, '_').trim() + '" style="max-width:100%; max-height:200px;">' : '') + '</td>\
+    </tr>\
+</table>';
+
+
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Ondo_State_Tourism_Sites_5_0() {
+            return {
+                pane: 'pane_Ondo_State_Tourism_Sites_5',
+                radius: 10.0,
+                opacity: 1,
+                color: 'rgba(128,17,25,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(238,211,33,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Ondo_State_Tourism_Sites_5');
+        map.getPane('pane_Ondo_State_Tourism_Sites_5').style.zIndex = 405;
+        map.getPane('pane_Ondo_State_Tourism_Sites_5').style['mix-blend-mode'] = 'normal';
+        var layer_Ondo_State_Tourism_Sites_5 = new L.geoJson(json_Ondo_State_Tourism_Sites_5, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Ondo_State_Tourism_Sites_5',
+            layerName: 'layer_Ondo_State_Tourism_Sites_5',
+            pane: 'pane_Ondo_State_Tourism_Sites_5',
+            onEachFeature: pop_Ondo_State_Tourism_Sites_5,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Ondo_State_Tourism_Sites_5_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Ondo_State_Tourism_Sites_5);
+        function pop_CarbonStorage_6(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>LGA</strong><br />' + (feature.properties['LGA'] !== null ? autolinker.link(feature.properties['LGA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Carbon Storage ES</strong><br />' + (feature.properties['Carbon_Sto'] !== null ? autolinker.link(feature.properties['Carbon_Sto'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_CarbonStorage_6_0(feature) {
+            if (feature.properties['Carbon_Val'] >= 303.818000 && feature.properties['Carbon_Val'] <= 573.640000 ) {
+                return {
+                pane: 'pane_CarbonStorage_6',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,68,27,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Carbon_Val'] >= 281.808000 && feature.properties['Carbon_Val'] <= 303.818000 ) {
+                return {
+                pane: 'pane_CarbonStorage_6',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(42,146,75,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Carbon_Val'] >= 273.838000 && feature.properties['Carbon_Val'] <= 281.808000 ) {
+                return {
+                pane: 'pane_CarbonStorage_6',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(123,199,124,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Carbon_Val'] >= 238.038000 && feature.properties['Carbon_Val'] <= 273.838000 ) {
+                return {
+                pane: 'pane_CarbonStorage_6',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(201,234,194,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Carbon_Val'] >= 211.740000 && feature.properties['Carbon_Val'] <= 238.038000 ) {
+                return {
+                pane: 'pane_CarbonStorage_6',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(247,252,245,1.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_CarbonStorage_6');
+        map.getPane('pane_CarbonStorage_6').style.zIndex = 406;
+        map.getPane('pane_CarbonStorage_6').style['mix-blend-mode'] = 'normal';
+        var layer_CarbonStorage_6 = new L.geoJson(json_CarbonStorage_6, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_CarbonStorage_6',
+            layerName: 'layer_CarbonStorage_6',
+            pane: 'pane_CarbonStorage_6',
+            onEachFeature: pop_CarbonStorage_6,
+            style: style_CarbonStorage_6_0,
+        });
+        bounds_group.addLayer(layer_CarbonStorage_6);
+        function pop_Aesthetic_QualityES_7(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>LGA</strong><br />' + (feature.properties['LGA'] !== null ? autolinker.link(feature.properties['LGA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Aesthetic Quality ES</strong><br />' + (feature.properties['Aesthetic_'] !== null ? autolinker.link(feature.properties['Aesthetic_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Aesthetic_QualityES_7_0(feature) {
+            if (feature.properties['Aesthetics'] >= 0.150000 && feature.properties['Aesthetics'] <= 0.230000 ) {
+                return {
+                pane: 'pane_Aesthetic_QualityES_7',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,68,27,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Aesthetics'] >= 0.122000 && feature.properties['Aesthetics'] <= 0.150000 ) {
+                return {
+                pane: 'pane_Aesthetic_QualityES_7',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(42,146,75,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Aesthetics'] >= 0.076000 && feature.properties['Aesthetics'] <= 0.122000 ) {
+                return {
+                pane: 'pane_Aesthetic_QualityES_7',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(123,199,124,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Aesthetics'] >= 0.048000 && feature.properties['Aesthetics'] <= 0.076000 ) {
+                return {
+                pane: 'pane_Aesthetic_QualityES_7',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(201,234,194,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Aesthetics'] >= 0.000000 && feature.properties['Aesthetics'] <= 0.048000 ) {
+                return {
+                pane: 'pane_Aesthetic_QualityES_7',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(247,252,245,1.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_Aesthetic_QualityES_7');
+        map.getPane('pane_Aesthetic_QualityES_7').style.zIndex = 407;
+        map.getPane('pane_Aesthetic_QualityES_7').style['mix-blend-mode'] = 'normal';
+        var layer_Aesthetic_QualityES_7 = new L.geoJson(json_Aesthetic_QualityES_7, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Aesthetic_QualityES_7',
+            layerName: 'layer_Aesthetic_QualityES_7',
+            pane: 'pane_Aesthetic_QualityES_7',
+            onEachFeature: pop_Aesthetic_QualityES_7,
+            style: style_Aesthetic_QualityES_7_0,
+        });
+        bounds_group.addLayer(layer_Aesthetic_QualityES_7);
+        function pop_Water_ProvisionES_8(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>LGA</strong><br />' + (feature.properties['LGA'] !== null ? autolinker.link(feature.properties['LGA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Water Provision ES</strong><br />' + (feature.properties['WaterES'] !== null ? autolinker.link(feature.properties['WaterES'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Water_ProvisionES_8_0(feature) {
+            if (feature.properties['Water_Val'] >= 57.868000 && feature.properties['Water_Val'] <= 65.060000 ) {
+                return {
+                pane: 'pane_Water_ProvisionES_8',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,68,27,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Water_Val'] >= 55.260000 && feature.properties['Water_Val'] <= 57.868000 ) {
+                return {
+                pane: 'pane_Water_ProvisionES_8',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(42,146,75,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Water_Val'] >= 51.294000 && feature.properties['Water_Val'] <= 55.260000 ) {
+                return {
+                pane: 'pane_Water_ProvisionES_8',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(123,199,124,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Water_Val'] >= 46.102000 && feature.properties['Water_Val'] <= 51.294000 ) {
+                return {
+                pane: 'pane_Water_ProvisionES_8',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(201,234,194,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Water_Val'] >= 43.050000 && feature.properties['Water_Val'] <= 46.102000 ) {
+                return {
+                pane: 'pane_Water_ProvisionES_8',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(247,252,245,1.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_Water_ProvisionES_8');
+        map.getPane('pane_Water_ProvisionES_8').style.zIndex = 408;
+        map.getPane('pane_Water_ProvisionES_8').style['mix-blend-mode'] = 'normal';
+        var layer_Water_ProvisionES_8 = new L.geoJson(json_Water_ProvisionES_8, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Water_ProvisionES_8',
+            layerName: 'layer_Water_ProvisionES_8',
+            pane: 'pane_Water_ProvisionES_8',
+            onEachFeature: pop_Water_ProvisionES_8,
+            style: style_Water_ProvisionES_8_0,
+        });
+        bounds_group.addLayer(layer_Water_ProvisionES_8);
+        function pop_Poverty_MDI_9(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>LGA</strong><br />' + (feature.properties['LGA'] !== null ? autolinker.link(feature.properties['LGA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Poverty Level</strong><br />' + (feature.properties['Poverty_MD'] !== null ? autolinker.link(feature.properties['Poverty_MD'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Poverty_MDI_9_0(feature) {
+            switch(String(feature.properties['Poverty_MD'])) {
+                case '1':
+                    return {
+                pane: 'pane_Poverty_MDI_9',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,100,0,1.0)',
+                interactive: true,
+            }
+                    break;
+                case '2':
+                    return {
+                pane: 'pane_Poverty_MDI_9',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,76,1.0)',
+                interactive: true,
+            }
+                    break;
+                case '3':
+                    return {
+                pane: 'pane_Poverty_MDI_9',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(250,0,0,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_Poverty_MDI_9');
+        map.getPane('pane_Poverty_MDI_9').style.zIndex = 409;
+        map.getPane('pane_Poverty_MDI_9').style['mix-blend-mode'] = 'normal';
+        var layer_Poverty_MDI_9 = new L.geoJson(json_Poverty_MDI_9, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Poverty_MDI_9',
+            layerName: 'layer_Poverty_MDI_9',
+            pane: 'pane_Poverty_MDI_9',
+            onEachFeature: pop_Poverty_MDI_9,
+            style: style_Poverty_MDI_9_0,
+        });
+        bounds_group.addLayer(layer_Poverty_MDI_9);
+        function pop_OndoStateNigeria_10(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>LGA</strong><br />' + (feature.properties['LGA'] !== null ? autolinker.link(feature.properties['LGA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Shape_Leng'] !== null ? autolinker.link(feature.properties['Shape_Leng'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Shape_Area'] !== null ? autolinker.link(feature.properties['Shape_Area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Poverty_MD'] !== null ? autolinker.link(feature.properties['Poverty_MD'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FID_'] !== null ? autolinker.link(feature.properties['FID_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Water_Val'] !== null ? autolinker.link(feature.properties['Water_Val'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Aesthetics'] !== null ? autolinker.link(feature.properties['Aesthetics'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Pollinatio'] !== null ? autolinker.link(feature.properties['Pollinatio'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Habitat_Qu'] !== null ? autolinker.link(feature.properties['Habitat_Qu'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Crop_Produ'] !== null ? autolinker.link(feature.properties['Crop_Produ'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Carbon_Val'] !== null ? autolinker.link(feature.properties['Carbon_Val'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Recreation'] !== null ? autolinker.link(feature.properties['Recreation'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WaterES'] !== null ? autolinker.link(feature.properties['WaterES'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Aesthetic_'] !== null ? autolinker.link(feature.properties['Aesthetic_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Pollinatio_1'] !== null ? autolinker.link(feature.properties['Pollinatio_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Habitat_Qu_1'] !== null ? autolinker.link(feature.properties['Habitat_Qu_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Crop_Produ_1'] !== null ? autolinker.link(feature.properties['Crop_Produ_1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Carbon_Sto'] !== null ? autolinker.link(feature.properties['Carbon_Sto'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_OndoStateNigeria_10_0() {
+            return {
+                pane: 'pane_OndoStateNigeria_10',
+                opacity: 1,
+                color: 'rgba(77,175,74,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_OndoStateNigeria_10');
+        map.getPane('pane_OndoStateNigeria_10').style.zIndex = 410;
+        map.getPane('pane_OndoStateNigeria_10').style['mix-blend-mode'] = 'normal';
+        var layer_OndoStateNigeria_10 = new L.geoJson(json_OndoStateNigeria_10, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_OndoStateNigeria_10',
+            layerName: 'layer_OndoStateNigeria_10',
+            pane: 'pane_OndoStateNigeria_10',
+            onEachFeature: pop_OndoStateNigeria_10,
+            style: style_OndoStateNigeria_10_0,
+        });
+        bounds_group.addLayer(layer_OndoStateNigeria_10);
+        map.addLayer(layer_OndoStateNigeria_10);
+        var osmGeocoder = new L.Control.Geocoder({
+            collapsed: true,
+            position: 'topleft',
+            text: 'Search',
+            title: 'Testing'
+        }).addTo(map);
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .className += ' fa fa-search';
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .title += 'Search for a place';
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/OndoStateNigeria_10.png" /> Ondo State, Nigeria': layer_OndoStateNigeria_10,'Poverty_MDI<br /><table><tr><td style="text-align: center;"><img src="legend/Poverty_MDI_9_Low0.png" /></td><td>Low</td></tr><tr><td style="text-align: center;"><img src="legend/Poverty_MDI_9_Medium1.png" /></td><td>Medium</td></tr><tr><td style="text-align: center;"><img src="legend/Poverty_MDI_9_High2.png" /></td><td>High</td></tr></table>': layer_Poverty_MDI_9,'Water_ProvisionES<br /><table><tr><td style="text-align: center;"><img src="legend/Water_ProvisionES_8_High0.png" /></td><td>High</td></tr><tr><td style="text-align: center;"><img src="legend/Water_ProvisionES_8_1.png" /></td><td></td></tr><tr><td style="text-align: center;"><img src="legend/Water_ProvisionES_8_2.png" /></td><td></td></tr><tr><td style="text-align: center;"><img src="legend/Water_ProvisionES_8_3.png" /></td><td></td></tr><tr><td style="text-align: center;"><img src="legend/Water_ProvisionES_8_Low4.png" /></td><td>Low</td></tr></table>': layer_Water_ProvisionES_8,'Aesthetic_QualityES<br /><table><tr><td style="text-align: center;"><img src="legend/Aesthetic_QualityES_7_High0.png" /></td><td>High</td></tr><tr><td style="text-align: center;"><img src="legend/Aesthetic_QualityES_7_1.png" /></td><td></td></tr><tr><td style="text-align: center;"><img src="legend/Aesthetic_QualityES_7_2.png" /></td><td></td></tr><tr><td style="text-align: center;"><img src="legend/Aesthetic_QualityES_7_3.png" /></td><td></td></tr><tr><td style="text-align: center;"><img src="legend/Aesthetic_QualityES_7_Low4.png" /></td><td>Low</td></tr></table>': layer_Aesthetic_QualityES_7,'Carbon Storage<br /><table><tr><td style="text-align: center;"><img src="legend/CarbonStorage_6_High0.png" /></td><td>High</td></tr><tr><td style="text-align: center;"><img src="legend/CarbonStorage_6_1.png" /></td><td></td></tr><tr><td style="text-align: center;"><img src="legend/CarbonStorage_6_2.png" /></td><td></td></tr><tr><td style="text-align: center;"><img src="legend/CarbonStorage_6_3.png" /></td><td></td></tr><tr><td style="text-align: center;"><img src="legend/CarbonStorage_6_Low4.png" /></td><td>Low</td></tr></table>': layer_CarbonStorage_6,'<img src="legend/Ondo_State_Tourism_Sites_5.png" /> Ondo_State_Tourism_Sites': layer_Ondo_State_Tourism_Sites_5,'RecreationES<br /><table><tr><td style="text-align: center;"><img src="legend/RecreationES_4_Present0.png" /></td><td>Present</td></tr><tr><td style="text-align: center;"><img src="legend/RecreationES_4_Absent1.png" /></td><td>Absent</td></tr></table>': layer_RecreationES_4,'PollinationES<br /><table><tr><td style="text-align: center;"><img src="legend/PollinationES_3_High0.png" /></td><td>High</td></tr><tr><td style="text-align: center;"><img src="legend/PollinationES_3_1.png" /></td><td></td></tr><tr><td style="text-align: center;"><img src="legend/PollinationES_3_2.png" /></td><td></td></tr><tr><td style="text-align: center;"><img src="legend/PollinationES_3_3.png" /></td><td></td></tr><tr><td style="text-align: center;"><img src="legend/PollinationES_3_Low4.png" /></td><td>Low</td></tr></table>': layer_PollinationES_3,'Habitat_QualityES<br /><table><tr><td style="text-align: center;"><img src="legend/Habitat_QualityES_2_High0.png" /></td><td>High</td></tr><tr><td style="text-align: center;"><img src="legend/Habitat_QualityES_2_1.png" /></td><td></td></tr><tr><td style="text-align: center;"><img src="legend/Habitat_QualityES_2_2.png" /></td><td></td></tr><tr><td style="text-align: center;"><img src="legend/Habitat_QualityES_2_3.png" /></td><td></td></tr><tr><td style="text-align: center;"><img src="legend/Habitat_QualityES_2_Low4.png" /></td><td>Low</td></tr></table>': layer_Habitat_QualityES_2,'Crop_ProductionES<br /><table><tr><td style="text-align: center;"><img src="legend/Crop_ProductionES_1_High0.png" /></td><td>High</td></tr><tr><td style="text-align: center;"><img src="legend/Crop_ProductionES_1_1.png" /></td><td></td></tr><tr><td style="text-align: center;"><img src="legend/Crop_ProductionES_1_2.png" /></td><td></td></tr><tr><td style="text-align: center;"><img src="legend/Crop_ProductionES_1_3.png" /></td><td></td></tr><tr><td style="text-align: center;"><img src="legend/Crop_ProductionES_1_Low4.png" /></td><td>Low</td></tr></table>': layer_Crop_ProductionES_1,"OpenStreetMap": layer_OpenStreetMap_0,}).addTo(map);
+        setBounds();
+        var i = 0;
+        layer_Ondo_State_Tourism_Sites_5.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['Name'] !== null?String('<div style="color: #ffc94c; font-size: 8pt; font-weight: bold; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['Name']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Ondo_State_Tourism_Sites_5'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        resetLabels([layer_Crop_ProductionES_1,layer_RecreationES_4,layer_Ondo_State_Tourism_Sites_5,layer_CarbonStorage_6,layer_Aesthetic_QualityES_7,layer_Water_ProvisionES_8,layer_Poverty_MDI_9,layer_OndoStateNigeria_10]);
+        map.on("zoomend", function(){
+            resetLabels([layer_Crop_ProductionES_1,layer_RecreationES_4,layer_Ondo_State_Tourism_Sites_5,layer_CarbonStorage_6,layer_Aesthetic_QualityES_7,layer_Water_ProvisionES_8,layer_Poverty_MDI_9,layer_OndoStateNigeria_10]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_Crop_ProductionES_1,layer_RecreationES_4,layer_Ondo_State_Tourism_Sites_5,layer_CarbonStorage_6,layer_Aesthetic_QualityES_7,layer_Water_ProvisionES_8,layer_Poverty_MDI_9,layer_OndoStateNigeria_10]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_Crop_ProductionES_1,layer_RecreationES_4,layer_Ondo_State_Tourism_Sites_5,layer_CarbonStorage_6,layer_Aesthetic_QualityES_7,layer_Water_ProvisionES_8,layer_Poverty_MDI_9,layer_OndoStateNigeria_10]);
+        });
+        </script>
+    </body>
+</html>
