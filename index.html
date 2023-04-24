@@ -548,7 +548,7 @@
         <td colspan="2"><strong>About</strong><br />' + (feature.properties['About'] !== null ? autolinker.link(feature.properties['About'].toLocaleString()) : '') + '</td>\
     </tr>\
     <tr>\
-        <td colspan="2">' + (feature.properties['Image'] !== null ? '<img src="./images/' + String(feature.properties['Image']).replace(/[\\\/:]/g, '_').trim() + '" style="max-width:100%; max-height:200px;">' : '') + '</td>\
+        <td colspan="2">' + (feature.properties['Image'] !== null ? '<img src="./images/' + String(feature.properties['Image']).replace(/[\\\/: ]/g, '').trim() + '" style="max-width:100%; max-height:200px;">' : '') + '</td>\
     </tr>\
 </table>';
 
